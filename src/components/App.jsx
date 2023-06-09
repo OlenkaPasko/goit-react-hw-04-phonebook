@@ -12,8 +12,7 @@ export function App() {
     JSON.parse(localStorage.getItem('contacts')) ?? []
   );
   const [filter, setFilter] = useState('');
-  //const [name, setName] = useState('');
-  //const [number, setNumber] = useState('');
+
 
   // для оновлення localStorage коли state contacts оновився
   useEffect(() => {

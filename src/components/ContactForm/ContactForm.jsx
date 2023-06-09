@@ -1,13 +1,8 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Label, Form, Button, Input } from './ContactForm.styled';
-//import { Formik, ErrorMessage } from 'formik';
 
 export const ContactForm = ({ onSubmitForm }) => {
-  //  const initialValues = {
-  //    name: '',
-  //   number: '',
-  // };
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
@@ -33,12 +28,6 @@ export const ContactForm = ({ onSubmitForm }) => {
     setName('');
     setNumber('');
   };
-
-  //  const handleSubmit = (value, { resetForm }) => {
-  //    //console.log(value);
-  //    onSubmitForm(value);
-  //    resetForm();
-  //  };
 
   return (
     <Form onSubmit={onFormSubmit}>
