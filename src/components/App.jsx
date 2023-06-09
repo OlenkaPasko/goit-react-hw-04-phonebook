@@ -7,13 +7,13 @@ import { Filter } from './Filter/Filter';
 
 import { Container } from './App.styled';
 
-export default function App() {
+export function App() {
   const [contacts, setContacts] = useState(
     JSON.parse(localStorage.getItem('contacts')) ?? []
   );
   const [filter, setFilter] = useState('');
-  const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+  //const [name, setName] = useState('');
+  //const [number, setNumber] = useState('');
 
   // для оновлення localStorage коли state contacts оновився
   useEffect(() => {
@@ -26,18 +26,12 @@ export default function App() {
         name.toLowerCase().trim() === values.name.toLowerCase().trim() ||
         number.trim() === values.number.trim()
     );
-    if (checkContact) alert(`${name} is already in contacts!`);
+    if (checkContact) alert(`${values.name} is already in contacts!`);
     setContacts(contacts => [{ ...values, id: nanoid() }, ...contacts]);
   };
 
   const deleteContact = contactId => {
-    this.setState(prevState => {
-      return {
-        contacts: prevState.contacts.filter(
-          contact => contact.id !== contactId
-        ),
-      };
-    });
+    setContacts(contacts.filter(contact => contact.id !== contactId));
   };
 
   const changeFilter = e => {
@@ -45,11 +39,12 @@ export default function App() {
   };
 
   const getVisibleContacts = () => {
-    const { filter, contacts } = this.state;
     const normalizedFilter = filter.toLowerCase();
-    return contacts.filter(({ name }) =>
-      name.toLowerCase().includes(normalizedFilter)
+
+    const filterContacts = contacts.filter(contact =>
+      contact.name.toLowerCase().trim().includes(normalizedFilter)
     );
+    return filterContacts;
   };
   return (
     <Container>
